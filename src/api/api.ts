@@ -1,4 +1,4 @@
-import axios, { AxiosInstance } from 'axios';
+import axios, { AxiosInstance, AxiosError } from 'axios';
 
 const spotifyApi: AxiosInstance = axios.create({
     baseURL: 'https://accounts.spotify.com',
@@ -24,13 +24,14 @@ export const spotifyGetData = async () => {
             },
         });
 
-        const artistResponse = await spotifyArtistApi.get('/artists/4Z8W4fKeB5YxbusRsdQVPb');
+        const artistResponse = await spotifyArtistApi.get('/artists/3Nrfpe0tUJi4K4DXYWgMUX');
         console.log("Artist data:", artistResponse.data);
 
         return artistResponse.data;
-    } catch (error: any) {
-        console.log(error.message);
+    } catch (error) {
+        if (error instanceof Error) {
+            console.log(error.message);
+        }
     }
 }
-
 

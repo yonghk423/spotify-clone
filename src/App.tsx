@@ -7,8 +7,10 @@ function App() {
     const fetchData = async () => {
       try {
         const data = await spotifyGetData();
-      } catch (error: any) {
-        console.error(error.message);
+        console.log("data test", data)
+      } catch (error) {
+        if (error instanceof Error)
+          console.error(error.message);
       }
     };
 
